@@ -43,6 +43,9 @@ public class BankAccount {
         if (email.indexOf('@') == -1){
             return false;
         }
+        else if (){
+            
+        }
         else {
             return true;
         }

@@ -24,8 +24,8 @@ class BankAccountTest {
 
     @Test
     void isEmailValidTest(){
-        assertTrue(BankAccount.isEmailValid( "a@b.com"));
-        assertFalse( BankAccount.isEmailValid(""));
+        assertTrue(BankAccount.isEmailValid( "a@b.com")); //equivalence class: no special characters and .com domain
+        assertFalse( BankAccount.isEmailValid("")); //this would be a border case as it is a string that contains nothing
     }
 
     @Test
