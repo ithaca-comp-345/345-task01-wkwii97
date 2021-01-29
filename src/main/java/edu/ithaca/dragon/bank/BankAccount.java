@@ -34,6 +34,9 @@ public class BankAccount {
         if (amount <= balance){
             balance -= amount;
         }
+        else if(amount < 0){
+            throw new InsufficientFundsException("Cannot subtract negative money.");
+        }
         else {
             throw new InsufficientFundsException("Not enough money");
         }
