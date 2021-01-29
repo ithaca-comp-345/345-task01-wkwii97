@@ -44,7 +44,7 @@ public class BankAccount {
 
 
     public static boolean isEmailValid(String email){
-        if(!(email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$"))){
+         if(!(email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$"))){
             return false;
         }
         else if (email.indexOf('@') == -1){
@@ -53,11 +53,77 @@ public class BankAccount {
         else if (email.lastIndexOf('.') == (email.indexOf('@') + 1)){
             return false;
         }
-        else if ((email.length() - 1) != email.lastIndexOf('.')){
+        else if (email.lastIndexOf('.') < (email.lastIndexOf('@'))){
+            return false;
+        }
+        else if ((email.length() - 1) == email.lastIndexOf('.')){
+            return false;
+        }
+        else if(email.charAt(email.lastIndexOf('@') - 1) == '-' || email.charAt(email.lastIndexOf('@') - 1) == '_' || email.charAt(email.lastIndexOf('@') - 1) == '.'){
+            return false;
+        }
+        else if(email.charAt(0) == '.' || email.charAt(0) == '-' || email.charAt(0) == '_'){
+            return false;
+        }
+        else if(email.charAt(email.lastIndexOf('.') - 1) == '.' || email.charAt(email.indexOf('.') + 1) == '.'){
+            return false;
+        }
+        else if(email.charAt(email.lastIndexOf('.') - 1) == '-' || email.charAt(email.indexOf('.') + 1) == '-'){
+            return false;
+        }
+        else if(email.charAt(email.lastIndexOf('.') - 1) == '_' || email.charAt(email.indexOf('.') + 1) == '_'){
+            return false;
+        }
+        else if(!doubleDash(email)){
+            return false;
+        }
+        else if(!doubleUnderscore(email)){
+            return false;
+        }
+        else if(email.charAt(email.lastIndexOf('.') + 1) == 't'){
             return false;
         }
         else {
             return true;
         }
     }
+    public static boolean doubleDash(String email){
+        if(email.indexOf('-') != -1){
+            if(email.charAt(email.lastIndexOf('-') - 1) == '-' || email.charAt(email.indexOf('-') + 1) == '-'){
+                return false;
+            }
+            else if(email.charAt(email.lastIndexOf('-') - 1) == '.' || email.charAt(email.indexOf('-') + 1) == '.'){
+                return false;
+            }
+            else if(email.charAt(email.lastIndexOf('-') - 1) == '_' || email.charAt(email.indexOf('-') + 1) == '_'){
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+        else{
+            return true;
+        }
+    }
+    public static boolean doubleUnderscore(String email){
+        if(email.indexOf('_') != -1){
+            if(email.charAt(email.lastIndexOf('_') - 1) == '_' || email.charAt(email.indexOf('_') + 1) == '_'){
+                return false;
+            }
+            else if(email.charAt(email.lastIndexOf('_') - 1) == '-' || email.charAt(email.indexOf('_') + 1) == '-'){
+                return false;
+            }
+            else if(email.charAt(email.lastIndexOf('_') - 1) == '.' || email.charAt(email.indexOf('_') + 1) == '.'){
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+        else{
+            return true;
+        }
+    }
 }
+
